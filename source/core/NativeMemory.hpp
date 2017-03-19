@@ -7,9 +7,10 @@ namespace GTA
 {
 	namespace Native
 	{
-		private ref class MemoryAccess abstract sealed
+		public ref class MemoryAccess abstract sealed
 		{
-		internal:
+		//internal:
+		public:
 			static int GetGameVersion();
 
 			static char ReadSByte(System::IntPtr address);

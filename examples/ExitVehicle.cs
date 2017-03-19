@@ -14,6 +14,8 @@ public class ExitVehicle : Script
 	{
 		Ped player = Game.Player.Character;
 
+        GTA.UI.Screen.ShowSubtitle("This is sparta");
+
 		if (Game.IsControlPressed(2, Control.VehicleExit) && DateTime.Now > _lastExit && player.IsInVehicle())
 		{
 			Wait(250);

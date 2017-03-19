@@ -413,5 +413,5 @@ namespace GTA.UI
 
 			Function.Call(Hash._DRAW_TEXT, x, y);
 		}
-	}
+    }
 }

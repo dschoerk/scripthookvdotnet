@@ -702,11 +702,43 @@ namespace GTA
 
 		ScriptDomain::CurrentDomain->StartScript(filename);
 	}
+	
 	void DefaultConsoleCommands::Reload(String ^filename)
 	{
 		Abort(filename);
 		Load(filename);
 	}
+
+	void DefaultConsoleCommands::Reload()
+	{
+		auto scripts = gcnew Collections::Generic::List<Script ^>(ScriptDomain::CurrentDomain->RunningScripts);
+		scripts->Remove(ScriptDomain::CurrentDomain->Console);
+
+		if (scripts->Count == 0)
+		{
+			Console::Info("There are no scripts loaded");
+			return;
+		}
+
+		String ^basedirectory = ScriptDomain::CurrentDomain->AppDomain->BaseDirectory;
+
+		Console::Info("---");
+		for each (auto script in scripts)
+		{
+			String ^filename = script->Filename;
+
+			if (filename->StartsWith(basedirectory, StringComparison::OrdinalIgnoreCase))
+			{
+				filename = filename->Substring(basedirectory->Length + 1);
+			}
+
+			Reload(filename);
+
+			Console::Info("   Reload: " + filename);
+		}
+		Console::Info("---");
+	}
+
 	void DefaultConsoleCommands::List()
 	{
 		auto scripts = gcnew Collections::Generic::List<Script ^>(ScriptDomain::CurrentDomain->RunningScripts);

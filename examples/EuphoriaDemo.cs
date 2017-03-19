@@ -28,6 +28,7 @@ public class EuphoriaDemo : Script
 			// Start the windmill message and run it for 5 seconds
 			Game.PlayerPed.Euphoria.ArmsWindmillAdaptive.Start(5000);
 
+
 			// Start body balance so pedestrian does not fall over
 			// Since we already have a message running, we do not need to put a time in this message
 			Game.PlayerPed.Euphoria.BodyBalance.Start();
